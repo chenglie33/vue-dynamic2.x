@@ -1,7 +1,7 @@
 {
   "name": "vue-dynamic-plugin",
   "version": "2.0.0",
-  "private": true,
+  "private": false,
   "main":"dist/vue-dynamic-plugin.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
