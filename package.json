@@ -1,12 +1,14 @@
 {
-  "name": "jsx-project",
-  "version": "0.1.0",
+  "name": "vue-dynamic-plugin",
+  "version": "2.0.0",
   "private": true,
+  "main":"dist/vue-dynamic-plugin.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "lib":"vue-cli-service build --target lib --name vue-dynamic-plugin src/plugin/dynamic/index.ts"
   },
   "dependencies": {
     "register-service-worker": "^1.6.2",

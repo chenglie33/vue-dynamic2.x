@@ -2,8 +2,12 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import DynamicUi from "./plugin/dynamic/index";
 import "./registerServiceWorker";
-
+Vue.use(DynamicUi, {
+  router,
+  store
+});
 Vue.config.productionTip = false;
 
 new Vue({
