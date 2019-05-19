@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
     <button @click="openA">弹窗打开</button>
   </div>
 </template>
@@ -18,19 +16,20 @@ import Test2 from "@/components/Test2.vue";
 })
 export default class Home extends Vue {
   msg = 1111;
+  instance: any;
   openA(): void {
     this.$dynamic("", Test, { msg: "我是root" }, { Out: this.TestM }, [
       {
         child: Test2,
-        template: {}
+        template: { slot: "slotsbane" }
       }
     ]).then((instance: any) => {
-      console.log(instance);
-      instance.destroyUi();
+      instance.$children[0].show(instance);
     });
   }
   TestM(): void {
-    console.log(this.msg);
+    console.log("emit method");
+    // console.log(this.instance.destroyUi());
   }
   mounted(): void {}
 }

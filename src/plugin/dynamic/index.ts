@@ -10,13 +10,19 @@ DynamicUi.install = function(Vue: any, options: any = {}) {
     on: Object,
     slots: Object
   ) {
-    let ChildConstructor = Vue.extend(component);
+    let ChildConstructor: any;
+    if (typeof component !== "string") {
+      ChildConstructor = Vue.extend(component);
+    } else {
+      ChildConstructor = component;
+    }
+
     // console.log(new ChildConstructor());
     const instance = new DynamicConstructor(options);
     instance.$set(instance.$data, "child", ChildConstructor);
-    instance.$set(instance.$data, "props", props);
-    instance.$set(instance.$data, "on", on);
-    instance.$set(instance.$data, "slotsObject", slots);
+    instance.$set(instance.$data, "props", props || {});
+    instance.$set(instance.$data, "on", on || {});
+    instance.$set(instance.$data, "slotsObject", slots || []);
     if (el) {
       el.appendChild(instance.$mount().$el);
     } else {

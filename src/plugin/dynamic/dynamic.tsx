@@ -3,7 +3,7 @@ import { CreateElement, VNode } from "vue";
 import { DynamicImpl } from "./dynamicImpl";
 
 @Component
-export default class HelloWorld extends Vue {
+export default class Dynamic extends Vue {
   child = "";
   props = {};
   on = {};
