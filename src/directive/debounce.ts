@@ -12,16 +12,26 @@ const debounce = (func: Function, time: number, ctx: any) => {
 function setdebounceDer(time: number): any {
   let debounceDer = {
     bind(el: any, binding: any, vnode: any) {
-      //过来的函数
-      binding.value;
-      //获取绑定的名称
-      binding.arg;
-      //名称后的参数
-      binding.modifiers;
+      let fns: Function;
+      let args: Array<any>;
+      if (typeof binding.value === "object") {
+        fns = binding.value.fn;
+        args = binding.value.arg;
+      } else {
+        fns = binding.value;
+        args = [];
+      }
 
-      const debounced = debounce(binding.value, time, vnode);
+      // //过来的函数
+      // binding.value;
+      // //获取绑定的名称
+      // binding.arg;
+      // //名称后的参数
+      // binding.modifiers;
+
+      const debounced = debounce(fns, time, vnode);
       let options = {
-        capture: binding.modifiers.stop || false,
+        capture: binding.modifiers.capture || false,
         passive: binding.modifiers.passive || false,
         once: binding.modifiers.once || false,
         prevent: binding.modifiers.prevent || false
@@ -30,7 +40,16 @@ function setdebounceDer(time: number): any {
       let fn = (event: any) => {
         let e = event ? event : window.event;
         if (options.prevent) e.preventDefault();
-        debounced();
+        if (binding.modifiers.stop) {
+          window.event
+            ? (window.event.cancelBubble = true)
+            : e.stopPropagation();
+        }
+
+        if (binding.modifiers.self && e.target !== el) {
+          return;
+        }
+        debounced(...args);
       };
       el.addEventListener(binding.arg, fn, options);
       el._debounced = fn;

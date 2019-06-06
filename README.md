@@ -16,8 +16,8 @@ import Debounce from vue-preventedup-plugin
 Vue.use(Debounce, { DebounceTime: 200, ThrottleTime: 200 })
 <button v-debounce:click="clickconsole">防抖指令</button>
 <a href="www.baidu.com" v-debounce:click.prevent="clickconsole">防抖指令</a>
-
-
+传入参数用法
+v-debounce:click.prevent.self="{ fn: Function, arg: [2] }" arg类似arguments
  <div
       v-throttle:scroll.passive="scor"
       style="width:200px;background:#dfdfdf;height:300px;overflow:auto"
