@@ -1,6 +1,6 @@
 {
   "name": "vue-dynamic-plugin",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "private": false,
   "main": "dist/vue-dynamic-plugin.umd.min.js",
   "homepage": "https://github.com/chenglie33/vue-dynamic2.x.git",
